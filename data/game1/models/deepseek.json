@@ -1,0 +1,13 @@
+{
+  "model": "DeepSeek-V3",
+  "date": "2025-01-18",
+  "transcriptionGrid": [
+    ["R", "E", "Z", "A", "E"],
+    ["O", "N", "E", "M", "Z"],
+    ["Y", "T", "E", "W", "N"],
+    ["Qu", "I", "I", "P", "I"],
+    ["W", "O", "F", "L", "O"]
+  ],
+  "wordsFound": ["ZONE", "TENT", "NET", "TEN", "ONE", "TEEN", "WET", "NEW", "MET", "MEN", "YET", "YEN", "WOE", "FOE", "PIE", "LIP", "FOIL", "WIPE", "PIPE"],
+  "wordScore": 94
+}

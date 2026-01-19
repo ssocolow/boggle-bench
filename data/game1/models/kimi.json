@@ -1,0 +1,13 @@
+{
+  "model": "Kimi k1.5",
+  "date": "2025-01-17",
+  "transcriptionGrid": [
+    ["R", "E", "Z", "A", "E"],
+    ["O", "N", "E", "M", "Z"],
+    ["Y", "T", "E", "W", "M"],
+    ["Q", "I", "I", "P", "I"],
+    ["W", "O", "F", "L", "O"]
+  ],
+  "wordsFound": ["ZONE", "TENT", "NET", "TEN", "ONE", "TEEN", "WET", "MET", "YET", "WOE", "FOE", "PIE", "LIP", "FOIL"],
+  "wordScore": 68
+}

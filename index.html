@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle Eval</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Boggle Eval</h1>
+    </header>
+
+    <main>
+        <section class="game-overview">
+            <div class="game-image">
+                <img id="boggle-image" src="" alt="Boggle game board">
+            </div>
+            <div class="correct-grid-container">
+                <h2>Correct Grid</h2>
+                <div id="correct-grid" class="boggle-grid"></div>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Max Score</span>
+                    <span id="max-score" class="stat-value">--</span>
+                </div>
+                <div class="stat stat-with-list">
+                    <span class="stat-label">Valid Words</span>
+                    <span id="valid-words-count" class="stat-value">--</span>
+                    <div id="valid-words-list" class="words-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="model-results">
+            <h2>Model Results <span id="last-updated" class="last-updated"></span></h2>
+            <div id="score-chart" class="score-chart"></div>
+            <div id="model-cards" class="model-cards-grid"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "id": "game1",
+  "image": "boggle1.png",
+  "correctGrid": [
+    ["R", "E", "Z", "A", "E"],
+    ["O", "N", "E", "M", "Z"],
+    ["Y", "T", "E", "W", "M"],
+    ["Qu", "I", "I", "P", "I"],
+    ["W", "O", "F", "L", "O"]
+  ],
+  "maxScore": 142,
+  "validWords": ["ZONE", "TENT", "NET", "TEN", "ONE", "TENET", "TEEN", "WET", "NEW", "MET", "MEN", "YET", "YEN", "WOE", "FOE", "PIE", "LIP", "OIL", "FOIL", "TOIL", "WIPE", "PIPE", "LIPID", "EMIT", "ITEM", "MITE", "WEEN", "TEEN", "PEEN", "NEON", "MEMO", "ENZYME"]
+}

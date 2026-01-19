@@ -1,0 +1,13 @@
+{
+  "model": "Claude 3.5 Sonnet",
+  "date": "2025-01-19",
+  "transcriptionGrid": [
+    ["R", "E", "Z", "A", "E"],
+    ["O", "N", "E", "N", "Z"],
+    ["Y", "T", "E", "W", "M"],
+    ["Qu", "I", "I", "P", "I"],
+    ["W", "O", "F", "L", "O"]
+  ],
+  "wordsFound": ["ZONE", "TENT", "NET", "TEN", "ONE", "TEEN", "WET", "NEW", "MET", "YET", "YEN", "WOE", "FOE", "PIE", "LIP", "FOIL", "WIPE"],
+  "wordScore": 87
+}
