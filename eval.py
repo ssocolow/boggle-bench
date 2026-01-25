@@ -8,7 +8,7 @@ Uses OpenRouter to evaluate multiple AI models on:
 
 Usage:
     python eval.py transcribe --image boggle1.png --models gpt-4o,claude-3.5-sonnet
-    python eval.py find-words --grid "R,E,Z,A,E;O,N,E,M,Z;Y,T,E,W,M;Qu,I,I,P,I;W,O,F,L,O" --models gpt-4o,claude-3.5-sonnet
+    python eval.py find-words --grid "R,N,E,A,N;O,M,E,N,C;Y,T,E,W,E;L,I,P,I,E;E,Qu,F,T,O" --models gpt-4o,claude-3.5-sonnet
 
 Environment:
     OPENROUTER_API_KEY - Your OpenRouter API key
@@ -29,17 +29,20 @@ OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Model mapping: short name -> OpenRouter model ID
 MODELS = {
-    "gpt-4o": "openai/gpt-4o",
-    "gpt-4o-mini": "openai/gpt-4o-mini",
-    "claude-3.5-sonnet": "anthropic/claude-3.5-sonnet",
-    "claude-3-opus": "anthropic/claude-3-opus",
-    "claude-3-haiku": "anthropic/claude-3-haiku",
-    "gemini-2.0-flash": "google/gemini-2.0-flash-001",
-    "gemini-1.5-pro": "google/gemini-pro-1.5",
-    "deepseek-v3": "deepseek/deepseek-chat",
-    "deepseek-r1": "deepseek/deepseek-r1",
-    "llama-3.2-90b": "meta-llama/llama-3.2-90b-vision-instruct",
-    "qwen-vl-plus": "qwen/qwen-vl-plus",
+    "anthropic/claude-sonnet-4.5",
+    # "x-ai/grok-code-fast-1",
+    # "google/gemini-3-flash-preview",
+    # "deepseek/deepseek-v3.2",
+    # "anthropic/claude-opus-4.5",
+    # "x-ai/grok-4.1-fast",
+    # "openai/gpt-oss-120b",
+    # "google/gemini-3-pro-preview",
+    # "openai/gpt-4o-mini",
+    # "openai/gpt-5.2",
+    # "google/gemma-3-27b-it:free",
+    # "moonshotai/kimi-k2-thinking",
+    # "qwen/qwen3-coder",
+    # "meta-llama/llama-4-maverick"
 }
 
 TRANSCRIPTION_PROMPT = """Look at this Boggle game board image. Transcribe the 5x5 grid of letters exactly as shown.
@@ -116,8 +119,7 @@ def call_openrouter(model_id: str, messages: list, api_key: str) -> str:
     """Call OpenRouter API and return the response text."""
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/simonw/boggle-eval",
+        "Content-Type": "application/json"
     }
 
     payload = {
@@ -136,30 +138,36 @@ def call_openrouter(model_id: str, messages: list, api_key: str) -> str:
 
 def parse_json_response(text: str) -> dict | list | None:
     """Extract JSON from response text, handling markdown code blocks."""
+    original_text = text
+
     # Try to find JSON in code blocks first
     code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)```", text)
     if code_block_match:
-        text = code_block_match.group(1).strip()
+        try:
+            return json.loads(code_block_match.group(1).strip())
+        except json.JSONDecodeError:
+            pass  # Code block wasn't JSON, continue with original text
 
-    # Try to parse as JSON
+    # Try to parse whole text as JSON
     try:
         return json.loads(text)
     except json.JSONDecodeError:
-        # Try to find JSON array or object in the text
-        json_match = re.search(r"(\[[\s\S]*\]|\{[\s\S]*\})", text)
-        if json_match:
-            try:
-                return json.loads(json_match.group(1))
-            except json.JSONDecodeError:
-                pass
+        pass
+
+    # Try to find JSON array or object in the text
+    json_match = re.search(r"(\{[\s\S]*\}|\[[\s\S]*\])", original_text)
+    if json_match:
+        try:
+            return json.loads(json_match.group(1))
+        except json.JSONDecodeError:
+            pass
 
     return None
 
 
 def transcribe_board(image_path: str, model_name: str, api_key: str) -> dict:
     """Transcribe a Boggle board image using a specific model."""
-    model_id = MODELS.get(model_name)
-    if not model_id:
+    if not (model_name in MODELS):
         return {"error": f"Unknown model: {model_name}"}
 
     image_data, media_type = encode_image(image_path)
@@ -185,7 +193,7 @@ def transcribe_board(image_path: str, model_name: str, api_key: str) -> dict:
     print(f"  Calling {model_name}...", file=sys.stderr)
 
     try:
-        response_text = call_openrouter(model_id, messages, api_key)
+        response_text = call_openrouter(model_name, messages, api_key)
         grid = parse_json_response(response_text)
 
         if grid is None:
@@ -204,8 +212,7 @@ def transcribe_board(image_path: str, model_name: str, api_key: str) -> dict:
 
 def find_words(grid: list[list[str]], model_name: str, api_key: str) -> dict:
     """Find valid Boggle words using a specific model."""
-    model_id = MODELS.get(model_name)
-    if not model_id:
+    if not (model_name in MODELS):
         return {"error": f"Unknown model: {model_name}"}
 
     # Format grid for display
@@ -223,7 +230,7 @@ def find_words(grid: list[list[str]], model_name: str, api_key: str) -> dict:
     print(f"  Calling {model_name}...", file=sys.stderr)
 
     try:
-        response_text = call_openrouter(model_id, messages, api_key)
+        response_text = call_openrouter(model_name, messages, api_key)
         result = parse_json_response(response_text)
 
         if result is None:
@@ -258,43 +265,41 @@ def calculate_word_score(words: list[str]) -> int:
         length = len(word.replace("QU", "Q"))  # Qu counts as 2 letters but 1 die
         if length <= 2:
             continue
-        elif length == 3 or length == 4:
-            score += 1 # TODO this is wrong. if length is 3 score should be 1. if length is four score should be 2
-        elif length == 5:
-            score += 2
-        elif length == 6:
-            score += 3
-        elif length == 7:
-            score += 5
         else:
-            score += 11
+            score += length - 2
     return score
 
 
-def generate_model_json(model_name: str, transcription_grid: list, words: list, word_score: int) -> dict:
+def generate_model_json(model_name: str, transcription_grid: list, words: list, word_score: int, mistaken_words: list = None) -> dict:
     """Generate a model JSON file for the site."""
-    # Map short names to display names
+    # Map model IDs to display names
     display_names = {
-        "gpt-4o": "GPT-4o",
-        "gpt-4o-mini": "GPT-4o Mini",
-        "claude-3.5-sonnet": "Claude 3.5 Sonnet",
-        "claude-3-opus": "Claude 3 Opus",
-        "claude-3-haiku": "Claude 3 Haiku",
-        "gemini-2.0-flash": "Gemini 2.0 Flash",
-        "gemini-1.5-pro": "Gemini 1.5 Pro",
-        "deepseek-v3": "DeepSeek-V3",
-        "deepseek-r1": "DeepSeek-R1",
-        "llama-3.2-90b": "Llama 3.2 90B",
-        "qwen-vl-plus": "Qwen VL Plus",
+        "anthropic/claude-sonnet-4.5": "Claude Sonnet 4.5",
+        "anthropic/claude-opus-4.5": "Claude Opus 4.5",
+        "openai/gpt-4o-mini": "GPT-4o Mini",
+        "openai/gpt-5.2": "GPT-5.2",
+        "openai/gpt-oss-120b": "GPT-OSS 120B",
+        "google/gemini-3-flash-preview": "Gemini 3 Flash",
+        "google/gemini-3-pro-preview": "Gemini 3 Pro",
+        "google/gemma-3-27b-it:free": "Gemma 3 27B",
+        "deepseek/deepseek-v3.2": "DeepSeek V3.2",
+        "x-ai/grok-code-fast-1": "Grok Code Fast 1",
+        "x-ai/grok-4.1-fast": "Grok 4.1 Fast",
+        "moonshotai/kimi-k2-thinking": "Kimi K2 Thinking",
+        "qwen/qwen3-coder": "Qwen3 Coder",
+        "meta-llama/llama-4-maverick": "Llama 4 Maverick",
     }
 
-    return {
+    result = {
         "model": display_names.get(model_name, model_name),
         "date": date.today().isoformat(),
         "transcriptionGrid": transcription_grid,
         "wordsFound": sorted(words),
         "wordScore": word_score,
     }
+    if mistaken_words:
+        result["mistakenWords"] = sorted(mistaken_words)
+    return result
 
 
 def cmd_transcribe(args):
@@ -356,6 +361,11 @@ def cmd_full_eval(args):
     # Load correct grid for word finding
     correct_grid = parse_grid_string(args.correct_grid)
 
+    # Load valid words from game.json
+    with open(args.game_json) as f:
+        game_data = json.load(f)
+    valid_words = set(w.upper() for w in game_data["validWords"])
+
     print(f"Running full evaluation with {len(models)} models...", file=sys.stderr)
 
     output_dir = Path(args.output_dir)
@@ -384,11 +394,16 @@ def cmd_full_eval(args):
             print(f"  Word finding failed: {words_result['error']}", file=sys.stderr)
             continue
 
-        words = words_result["words"]
+        all_words = words_result["words"]
+
+        # Filter words against valid words from game.json
+        words = [w for w in all_words if w.upper() in valid_words]
+        mistaken_words = [w for w in all_words if w.upper() not in valid_words]
+
         word_score = calculate_word_score(words)
 
         # Generate model JSON
-        model_data = generate_model_json(model, transcription_grid, words, word_score)
+        model_data = generate_model_json(model, transcription_grid, words, word_score, mistaken_words)
 
         # Save to file
         filename = f"{model.replace('.', '-').replace('/', '-')}.json"
@@ -399,7 +414,7 @@ def cmd_full_eval(args):
         index.append(filename)
         print(f"  Saved to {filepath}", file=sys.stderr)
         print(f"  Transcription errors: {25 - sum(1 for i in range(5) for j in range(5) if transcription_grid[i][j] == correct_grid[i][j])}", file=sys.stderr)
-        print(f"  Words found: {len(words)}, Score: {word_score}", file=sys.stderr)
+        print(f"  Valid words: {len(words)}, Mistaken: {len(mistaken_words)}, Score: {word_score}", file=sys.stderr)
 
     # Save index
     index_path = output_dir / "index.json"
@@ -430,6 +445,7 @@ def main():
     full_parser = subparsers.add_parser("full-eval", help="Run full evaluation (transcribe + find words)")
     full_parser.add_argument("--image", required=True, help="Path to the Boggle board image")
     full_parser.add_argument("--correct-grid", required=True, help="Correct grid for word finding")
+    full_parser.add_argument("--game-json", required=True, help="Path to game.json with valid words")
     full_parser.add_argument("--models", required=True, help="Comma-separated list of models to use")
     full_parser.add_argument("--output-dir", required=True, help="Output directory for model JSON files")
     full_parser.set_defaults(func=cmd_full_eval)
