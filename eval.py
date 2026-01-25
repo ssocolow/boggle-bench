@@ -30,19 +30,19 @@ OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 # Model mapping: short name -> OpenRouter model ID
 MODELS = {
     "anthropic/claude-sonnet-4.5",
-    # "x-ai/grok-code-fast-1",
-    # "google/gemini-3-flash-preview",
-    # "deepseek/deepseek-v3.2",
-    # "anthropic/claude-opus-4.5",
-    # "x-ai/grok-4.1-fast",
-    # "openai/gpt-oss-120b",
-    # "google/gemini-3-pro-preview",
-    # "openai/gpt-4o-mini",
-    # "openai/gpt-5.2",
-    # "google/gemma-3-27b-it:free",
-    # "moonshotai/kimi-k2-thinking",
-    # "qwen/qwen3-coder",
-    # "meta-llama/llama-4-maverick"
+    "x-ai/grok-code-fast-1",
+    "google/gemini-3-flash-preview",
+    "deepseek/deepseek-v3.2",
+    "anthropic/claude-opus-4.5",
+    "x-ai/grok-4.1-fast",
+    "openai/gpt-oss-120b",
+    "google/gemini-3-pro-preview",
+    "openai/gpt-4o-mini",
+    "openai/gpt-5.2",
+    "google/gemma-3-27b-it:free",
+    "moonshotai/kimi-k2-thinking",
+    "qwen/qwen3-coder",
+    "meta-llama/llama-4-maverick"
 }
 
 TRANSCRIPTION_PROMPT = """Look at this Boggle game board image. Transcribe the 5x5 grid of letters exactly as shown.
@@ -356,7 +356,10 @@ def cmd_find_words(args):
 def cmd_full_eval(args):
     """Run full evaluation: transcribe then find words."""
     api_key = get_api_key()
-    models = [m.strip() for m in args.models.split(",")]
+    if args.models:
+        models = [m.strip() for m in args.models.split(",")]
+    else:
+        models = list(MODELS)
 
     # Load correct grid for word finding
     correct_grid = parse_grid_string(args.correct_grid)
@@ -446,7 +449,7 @@ def main():
     full_parser.add_argument("--image", required=True, help="Path to the Boggle board image")
     full_parser.add_argument("--correct-grid", required=True, help="Correct grid for word finding")
     full_parser.add_argument("--game-json", required=True, help="Path to game.json with valid words")
-    full_parser.add_argument("--models", required=True, help="Comma-separated list of models to use")
+    full_parser.add_argument("--models", help="Comma-separated list of models (default: all models)")
     full_parser.add_argument("--output-dir", required=True, help="Output directory for model JSON files")
     full_parser.set_defaults(func=cmd_full_eval)
 

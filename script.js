@@ -7,13 +7,13 @@ async function loadGame(gameId) {
 
 async function loadModels(gameId) {
     // Fetch the models index file to get list of available models
-    const indexResponse = await fetch(`data/${gameId}/models/index.json`);
+    const indexResponse = await fetch(`data/${gameId}/models-real/index.json`);
     const modelFiles = await indexResponse.json();
 
     // Load all model files
     const models = await Promise.all(
         modelFiles.map(async (filename) => {
-            const response = await fetch(`data/${gameId}/models/${filename}`);
+            const response = await fetch(`data/${gameId}/models-real/${filename}`);
             return response.json();
         })
     );

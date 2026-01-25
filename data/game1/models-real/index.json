@@ -1,3 +1,9 @@
 [
-  "anthropic-claude-sonnet-4-5.json"
+  "google-gemma-3-27b-it:free.json",
+  "anthropic-claude-opus-4-5.json",
+  "openai-gpt-4o-mini.json",
+  "meta-llama-llama-4-maverick.json",
+  "anthropic-claude-sonnet-4-5.json",
+  "x-ai-grok-4-1-fast.json",
+  "google-gemini-3-flash-preview.json"
 ]

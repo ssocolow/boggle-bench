@@ -1,0 +1,74 @@
+{
+  "model": "Grok 4.1 Fast",
+  "date": "2026-01-25",
+  "transcriptionGrid": [
+    [
+      "R",
+      "Z",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "C"
+    ],
+    [
+      "Y",
+      "H",
+      "E",
+      "W",
+      "M"
+    ],
+    [
+      "L",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "U",
+      "N",
+      "F",
+      "T",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "EWE",
+    "FILE",
+    "FIT",
+    "LIE",
+    "LIEN",
+    "LIP",
+    "MEAN",
+    "MEN",
+    "MEW",
+    "NET",
+    "NEW",
+    "NOTE",
+    "ONE",
+    "PET",
+    "PEW",
+    "PIE",
+    "PILE",
+    "QUIET",
+    "QUILT",
+    "QUIP",
+    "QUIT",
+    "QUITE",
+    "TEE",
+    "TEN",
+    "TIE",
+    "TIP",
+    "TOE",
+    "TON",
+    "WET",
+    "YIP"
+  ],
+  "wordScore": 38
+}

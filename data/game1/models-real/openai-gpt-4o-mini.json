@@ -1,0 +1,73 @@
+{
+  "model": "GPT-4o Mini",
+  "date": "2026-01-25",
+  "transcriptionGrid": [
+    [
+      "O",
+      "Y",
+      "L",
+      "E",
+      "F"
+    ],
+    [
+      "M",
+      "T",
+      "E",
+      "W",
+      "N"
+    ],
+    [
+      "N",
+      "A",
+      "C",
+      "E",
+      "P"
+    ],
+    [
+      "I",
+      "E",
+      "T",
+      "O",
+      "L"
+    ],
+    [
+      "F",
+      "U",
+      "Q",
+      "R",
+      "Z"
+    ]
+  ],
+  "wordsFound": [
+    "EWE",
+    "MEET",
+    "MEN",
+    "NOTE",
+    "TIE",
+    "TIE",
+    "TOM",
+    "WET"
+  ],
+  "wordScore": 10,
+  "mistakenWords": [
+    "CONE",
+    "COW",
+    "EAT",
+    "EGO",
+    "FEET",
+    "FOOT",
+    "LINE",
+    "MAN",
+    "MICE",
+    "MICE",
+    "MINE",
+    "MINE",
+    "MITE",
+    "NEAT",
+    "PINE",
+    "QUEEN",
+    "TIME",
+    "TWEET",
+    "WINE"
+  ]
+}

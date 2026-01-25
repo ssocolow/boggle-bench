@@ -1,6 +1,6 @@
 {
   "model": "Claude Sonnet 4.5",
-  "date": "2026-01-24",
+  "date": "2026-01-25",
   "transcriptionGrid": [
     [
       "R",
@@ -39,19 +39,25 @@
     ]
   ],
   "wordsFound": [
-    "ACNE",
-    "ANEW",
+    "EWE",
     "ITEM",
     "MEAN",
     "MEET",
+    "MEN",
     "METE",
-    "NENE",
+    "NOME",
     "OMEN",
     "PEEN",
+    "PEW",
     "PITY",
+    "TEEM",
     "TEEN",
-    "TIPI",
-    "WEET"
+    "WEEN",
+    "WIPE"
   ],
-  "wordScore": 26
+  "wordScore": 27,
+  "mistakenWords": [
+    "EMIT",
+    "TIME"
+  ]
 }
