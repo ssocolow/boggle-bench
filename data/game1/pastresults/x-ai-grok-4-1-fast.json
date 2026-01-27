@@ -1,6 +1,6 @@
 {
   "model": "Grok 4.1 Fast",
-  "date": "2026-01-26",
+  "date": "2026-01-25",
   "transcriptionGrid": [
     [
       "R",
@@ -25,27 +25,26 @@
     ],
     [
       "L",
-      "T",
+      "I",
       "P",
       "I",
       "E"
     ],
     [
-      "M",
-      "O",
+      "U",
+      "N",
       "F",
       "T",
       "O"
     ]
   ],
   "wordsFound": [
-    "ACE",
-    "ACNE",
-    "ANEW",
-    "CAN",
+    "EWE",
+    "FILE",
     "FIT",
+    "LIE",
+    "LIEN",
     "LIP",
-    "LIT",
     "MEAN",
     "MEN",
     "MEW",
@@ -53,23 +52,23 @@
     "NEW",
     "NOTE",
     "ONE",
+    "PET",
+    "PEW",
     "PIE",
-    "PIETY",
     "PILE",
-    "PIT",
     "QUIET",
     "QUILT",
     "QUIP",
+    "QUIT",
     "QUITE",
+    "TEE",
+    "TEN",
     "TIE",
-    "TIPI",
+    "TIP",
+    "TOE",
     "TON",
-    "TONE",
-    "TOY",
-    "WEEN",
     "WET",
-    "WIPE",
     "YIP"
   ],
-  "wordScore": 45
+  "wordScore": 38
 }

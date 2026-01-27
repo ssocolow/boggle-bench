@@ -1,6 +1,6 @@
 {
   "model": "Claude Sonnet 4.5",
-  "date": "2026-01-26",
+  "date": "2026-01-25",
   "transcriptionGrid": [
     [
       "R",
@@ -39,21 +39,25 @@
     ]
   ],
   "wordsFound": [
+    "EWE",
     "ITEM",
     "MEAN",
     "MEET",
     "MEN",
     "METE",
+    "NOME",
     "OMEN",
     "PEEN",
     "PEW",
-    "PIT",
+    "PITY",
     "TEEM",
     "TEEN",
-    "TIP",
-    "TOE",
     "WEEN",
-    "WIT"
+    "WIPE"
   ],
-  "wordScore": 24
+  "wordScore": 27,
+  "mistakenWords": [
+    "EMIT",
+    "TIME"
+  ]
 }

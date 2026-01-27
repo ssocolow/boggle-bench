@@ -2,3 +2,4 @@
 dictionary.csv
 .env
 .envrc
+__pycache__/

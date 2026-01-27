@@ -30,18 +30,13 @@ OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 # Model mapping: short name -> OpenRouter model ID
 MODELS = {
     "anthropic/claude-sonnet-4.5",
-    "x-ai/grok-code-fast-1",
     "google/gemini-3-flash-preview",
-    "deepseek/deepseek-v3.2",
     "anthropic/claude-opus-4.5",
     "x-ai/grok-4.1-fast",
-    "openai/gpt-oss-120b",
     "google/gemini-3-pro-preview",
     "openai/gpt-4o-mini",
     "openai/gpt-5.2",
-    "google/gemma-3-27b-it:free",
-    "moonshotai/kimi-k2-thinking",
-    "qwen/qwen3-coder",
+    "google/gemma-3-27b-it",
     "meta-llama/llama-4-maverick"
 }
 
@@ -125,7 +120,8 @@ def call_openrouter(model_id: str, messages: list, api_key: str) -> str:
     payload = {
         "model": model_id,
         "messages": messages,
-        "max_tokens": 4096,
+        "max_tokens": 99999,
+        # "reasoning": {"effort": "low"},
     }
 
     with httpx.Client(timeout=120.0) as client:
@@ -278,15 +274,10 @@ def generate_model_json(model_name: str, transcription_grid: list, words: list, 
         "anthropic/claude-opus-4.5": "Claude Opus 4.5",
         "openai/gpt-4o-mini": "GPT-4o Mini",
         "openai/gpt-5.2": "GPT-5.2",
-        "openai/gpt-oss-120b": "GPT-OSS 120B",
         "google/gemini-3-flash-preview": "Gemini 3 Flash",
         "google/gemini-3-pro-preview": "Gemini 3 Pro",
-        "google/gemma-3-27b-it:free": "Gemma 3 27B",
-        "deepseek/deepseek-v3.2": "DeepSeek V3.2",
-        "x-ai/grok-code-fast-1": "Grok Code Fast 1",
+        "google/gemma-3-27b-it": "Gemma 3 27B",
         "x-ai/grok-4.1-fast": "Grok 4.1 Fast",
-        "moonshotai/kimi-k2-thinking": "Kimi K2 Thinking",
-        "qwen/qwen3-coder": "Qwen3 Coder",
         "meta-llama/llama-4-maverick": "Llama 4 Maverick",
     }
 

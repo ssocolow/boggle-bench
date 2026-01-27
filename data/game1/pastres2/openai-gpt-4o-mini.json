@@ -3,22 +3,22 @@
   "date": "2026-01-26",
   "transcriptionGrid": [
     [
-      "R",
-      "E",
-      "N",
-      "A",
-      "Z"
-    ],
-    [
-      "T",
-      "E",
-      "W",
-      "E",
-      "L"
-    ],
-    [
       "O",
       "Y",
+      "L",
+      "E",
+      "T"
+    ],
+    [
+      "M",
+      "E",
+      "W",
+      "N",
+      "A"
+    ],
+    [
+      "C",
+      "E",
       "P",
       "I",
       "E"
@@ -27,39 +27,38 @@
       "F",
       "L",
       "O",
-      "U",
-      "C"
+      "T",
+      "N"
     ],
     [
-      "M",
-      "E",
+      "Z",
+      "U",
+      "R",
       "N",
-      "C",
       "E"
     ]
   ],
   "wordsFound": [
-    "LIP",
+    "CAN",
+    "FIT",
+    "LIE",
     "MEAN",
-    "MEN",
     "QUITE",
-    "TONE",
+    "QUITE",
+    "TEEN",
+    "WEAN",
     "WET"
   ],
-  "wordScore": 9,
+  "wordScore": 14,
   "mistakenWords": [
     "CONE",
-    "COT",
-    "COTE",
     "FINE",
-    "MAN",
-    "NAME",
-    "NEWT",
-    "PILOT",
-    "PITE",
-    "RAN",
-    "RIME",
-    "TIME",
+    "LINE",
+    "MICE",
+    "MINCE",
+    "MINE",
+    "PINE",
+    "QUID",
     "TIME",
     "TINE",
     "WINE"

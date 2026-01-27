@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boggle Eval</title>
+    <title>Boggle Bench</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Boggle Eval</h1>
+        <h1>Boggle Bench</h1>
     </header>
 
     <main>
@@ -26,7 +26,16 @@
                     <span id="max-score" class="stat-value">--</span>
                 </div>
                 <div class="stat stat-with-list">
-                    <span class="stat-label">Valid Words</span>
+                    <span class="stat-label">
+                        Valid Words
+                        <span class="info-icon" data-tooltip="Boggle Rules:
+1. Form words by connecting adjacent letters (horizontally, vertically, or diagonally)
+2. Each letter can only be used once per word
+3. Words must be at least 3 letters long
+4. Words must be valid English dictionary words
+5. No proper nouns, abbreviations, or contractions
+6. 'Qu' counts as two letters but occupies one cell">i</span>
+                    </span>
                     <span id="valid-words-count" class="stat-value">--</span>
                     <div id="valid-words-list" class="words-list"></div>
                 </div>
@@ -34,7 +43,7 @@
         </section>
 
         <section class="model-results">
-            <h2>Model Results <span id="last-updated" class="last-updated"></span></h2>
+            <h2>Model Score <span class="subtitle">(using correct grid)</span> <span id="last-updated" class="last-updated"></span></h2>
             <div id="score-chart" class="score-chart"></div>
             <div id="model-cards" class="model-cards-grid"></div>
         </section>

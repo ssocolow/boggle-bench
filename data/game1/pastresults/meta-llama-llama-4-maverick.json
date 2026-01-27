@@ -1,10 +1,10 @@
 {
   "model": "Llama 4 Maverick",
-  "date": "2026-01-26",
+  "date": "2026-01-25",
   "transcriptionGrid": [
     [
       "R",
-      "Z",
+      "N",
       "E",
       "V",
       "N"
@@ -24,65 +24,56 @@
       "M"
     ],
     [
-      "T",
-      "P",
+      "r",
+      "Qu",
       "P",
       "I",
       "E"
     ],
     [
-      "M",
-      "Qu",
+      "m",
+      "u",
       "F",
-      "L",
+      "l",
       "O"
     ]
   ],
   "wordsFound": [
     "EWE",
+    "FIT",
     "LIE",
     "LIP",
-    "LIT",
-    "LITE",
     "MEN",
-    "MEW",
+    "MOTE",
+    "NET",
     "NEW",
-    "NOT",
     "ONE",
-    "PIE",
-    "PITY",
     "TEN",
     "TEW",
     "TIE",
     "TOE",
+    "TOE",
     "TONE",
-    "WEN",
-    "WET"
+    "WEE",
+    "WEN"
   ],
-  "wordScore": 22,
+  "wordScore": 19,
   "mistakenWords": [
-    "EAT",
-    "EON",
-    "FEE",
-    "FEW",
-    "FEY",
+    "AN",
+    "EEL",
+    "EYE",
+    "FOE",
+    "FOE",
     "LET",
-    "LEW",
-    "LINE",
-    "LOW",
-    "MOW",
+    "LYE",
+    "ME",
+    "NEWLY",
     "NO",
+    "OWE",
     "OWL",
     "OWN",
+    "TE",
     "TO",
-    "TOW",
-    "TRY",
-    "TYNE",
-    "WE",
-    "WEY",
-    "WOE",
-    "WON",
-    "YEN",
-    "YET"
+    "WE"
   ]
 }

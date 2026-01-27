@@ -41,19 +41,24 @@
   "wordsFound": [
     "ITEM",
     "MEAN",
-    "MEET",
     "MEN",
-    "METE",
     "OMEN",
     "PEEN",
     "PEW",
     "PIT",
-    "TEEM",
     "TEEN",
     "TIP",
-    "TOE",
     "WEEN",
+    "WIPE",
     "WIT"
   ],
-  "wordScore": 24
+  "wordScore": 19,
+  "mistakenWords": [
+    "EMIT",
+    "LYE",
+    "MITE",
+    "TIME",
+    "TWEE",
+    "TWEEN"
+  ]
 }
