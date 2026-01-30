@@ -161,6 +161,19 @@ function renderModelCard(modelData, correctGrid, bestScore) {
     wordsList.textContent = modelData.wordsFound.sort().join(', ');
     wordsSection.appendChild(wordsList);
 
+    // Mistaken words section
+    if (modelData.mistakenWords && modelData.mistakenWords.length > 0) {
+        const mistakenHeader = document.createElement('h4');
+        mistakenHeader.className = 'mistaken-words-header';
+        mistakenHeader.textContent = `Mistaken Words (${modelData.mistakenWords.length})`;
+        wordsSection.appendChild(mistakenHeader);
+
+        const mistakenList = document.createElement('div');
+        mistakenList.className = 'model-words-list mistaken-words-list';
+        mistakenList.textContent = modelData.mistakenWords.sort().join(', ');
+        wordsSection.appendChild(mistakenList);
+    }
+
     content.appendChild(wordsSection);
     card.appendChild(content);
 

@@ -344,6 +344,48 @@ def cmd_find_words(args):
         print(json.dumps(results, indent=2))
 
 
+def run_single_eval(model: str, image_path: str, correct_grid: list, valid_words: set, api_key: str) -> dict | None:
+    """Run a single evaluation for one model. Returns result dict or None on error."""
+    # Step 1: Transcribe
+    trans_result = transcribe_board(image_path, model, api_key)
+
+    if "error" in trans_result:
+        print(f"  Transcription failed: {trans_result['error']}", file=sys.stderr)
+        return None
+
+    transcription_grid = trans_result["grid"]
+
+    # Step 2: Find words (using correct grid)
+    words_result = find_words(correct_grid, model, api_key)
+
+    if "error" in words_result:
+        print(f"  Word finding failed: {words_result['error']}", file=sys.stderr)
+        return None
+
+    all_words = words_result["words"]
+
+    # Filter words against valid words
+    words = [w for w in all_words if w.upper() in valid_words]
+    mistaken_words = [w for w in all_words if w.upper() not in valid_words]
+
+    word_score = calculate_word_score(words)
+
+    # Calculate transcription errors
+    transcription_errors = 25 - sum(
+        1 for i in range(5) for j in range(5)
+        if transcription_grid[i][j] == correct_grid[i][j]
+    )
+
+    return {
+        "transcriptionGrid": transcription_grid,
+        "wordsFound": sorted(words),
+        "wordScore": word_score,
+        "mistakenWords": sorted(mistaken_words),
+        "transcriptionErrors": transcription_errors,
+        "totalWordsAttempted": len(all_words),
+    }
+
+
 def cmd_full_eval(args):
     """Run full evaluation: transcribe then find words."""
     api_key = get_api_key()
@@ -417,6 +459,78 @@ def cmd_full_eval(args):
     print(f"\nIndex saved to {index_path}", file=sys.stderr)
 
 
+def cmd_repeat_eval(args):
+    """Run full evaluation multiple times for a single model."""
+    api_key = get_api_key()
+    model = args.model
+
+    if model not in MODELS:
+        print(f"Error: Unknown model '{model}'", file=sys.stderr)
+        print(f"Available models: {', '.join(sorted(MODELS))}", file=sys.stderr)
+        sys.exit(1)
+
+    # Load correct grid for word finding
+    correct_grid = parse_grid_string(args.correct_grid)
+
+    # Load valid words from game.json
+    with open(args.game_json) as f:
+        game_data = json.load(f)
+    valid_words = set(w.upper() for w in game_data["validWords"])
+
+    runs = args.runs
+    print(f"Running {runs} evaluations for {model}...", file=sys.stderr)
+
+    # Map model IDs to display names
+    display_names = {
+        "anthropic/claude-sonnet-4.5": "Claude Sonnet 4.5",
+        "anthropic/claude-opus-4.5": "Claude Opus 4.5",
+        "openai/gpt-4o-mini": "GPT-4o Mini",
+        "openai/gpt-5.2": "GPT-5.2",
+        "google/gemini-3-flash-preview": "Gemini 3 Flash",
+        "google/gemini-3-pro-preview": "Gemini 3 Pro",
+        "google/gemma-3-27b-it": "Gemma 3 27B",
+        "x-ai/grok-4.1-fast": "Grok 4.1 Fast",
+        "meta-llama/llama-4-maverick": "Llama 4 Maverick",
+    }
+
+    results = {
+        "model": display_names.get(model, model),
+        "modelId": model,
+        "date": date.today().isoformat(),
+        "totalRuns": runs,
+        "runs": []
+    }
+
+    successful = 0
+    for i in range(runs):
+        print(f"\n[Run {i + 1}/{runs}]", file=sys.stderr)
+
+        result = run_single_eval(model, args.image, correct_grid, valid_words, api_key)
+
+        if result is None:
+            print(f"  Run {i + 1} failed", file=sys.stderr)
+            results["runs"].append({"error": "Evaluation failed"})
+            continue
+
+        successful += 1
+        result["runNumber"] = i + 1
+        results["runs"].append(result)
+
+        print(f"  Transcription errors: {result['transcriptionErrors']}", file=sys.stderr)
+        print(f"  Valid words: {len(result['wordsFound'])}, Mistaken: {len(result['mistakenWords'])}, Score: {result['wordScore']}", file=sys.stderr)
+
+    results["successfulRuns"] = successful
+
+    # Save to output file
+    output_path = Path(args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w") as f:
+        json.dump(results, f, indent=2)
+
+    print(f"\n{successful}/{runs} runs completed successfully", file=sys.stderr)
+    print(f"Results saved to {output_path}", file=sys.stderr)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Boggle evaluation using OpenRouter")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -443,6 +557,16 @@ def main():
     full_parser.add_argument("--models", help="Comma-separated list of models (default: all models)")
     full_parser.add_argument("--output-dir", required=True, help="Output directory for model JSON files")
     full_parser.set_defaults(func=cmd_full_eval)
+
+    # Repeat evaluation command
+    repeat_parser = subparsers.add_parser("repeat-eval", help="Run full evaluation multiple times for one model")
+    repeat_parser.add_argument("--image", required=True, help="Path to the Boggle board image")
+    repeat_parser.add_argument("--correct-grid", required=True, help="Correct grid for word finding")
+    repeat_parser.add_argument("--game-json", required=True, help="Path to game.json with valid words")
+    repeat_parser.add_argument("--model", required=True, help="Model to evaluate")
+    repeat_parser.add_argument("--runs", type=int, default=10, help="Number of evaluation runs (default: 10)")
+    repeat_parser.add_argument("--output", required=True, help="Output JSON file for all results")
+    repeat_parser.set_defaults(func=cmd_repeat_eval)
 
     # List models command
     list_parser = subparsers.add_parser("list-models", help="List available models")
