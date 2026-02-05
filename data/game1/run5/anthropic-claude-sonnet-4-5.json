@@ -1,0 +1,58 @@
+{
+  "model": "Claude Sonnet 4.5",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "N",
+      "C"
+    ],
+    [
+      "Y",
+      "L",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "F",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "S",
+      "F",
+      "I",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ITEM",
+    "MEET",
+    "MEN",
+    "METE",
+    "NOME",
+    "OMEN",
+    "PEEN",
+    "PIT",
+    "TEEM",
+    "TEEN",
+    "TIP",
+    "TIPI",
+    "WEEN",
+    "WIPE"
+  ],
+  "wordScore": 25
+}

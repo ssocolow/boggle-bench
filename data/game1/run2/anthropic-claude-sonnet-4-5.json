@@ -1,0 +1,88 @@
+{
+  "model": "Claude Sonnet 4.5",
+  "date": "2026-02-03",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "N",
+      "C"
+    ],
+    [
+      "Y",
+      "L",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "T",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "S",
+      "F",
+      "I",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ANEW",
+    "CANE",
+    "CEE",
+    "EWE",
+    "ITEM",
+    "MEAN",
+    "MEET",
+    "MEN",
+    "MET",
+    "METE",
+    "METE",
+    "NEEM",
+    "NEEP",
+    "OMEN",
+    "PEEN",
+    "PEEN",
+    "PEWEE",
+    "PITY",
+    "TEEM",
+    "TEEN",
+    "TIPI",
+    "WEAN",
+    "WEEN",
+    "WEEP",
+    "WEET",
+    "WIPE",
+    "WIT",
+    "WITE"
+  ],
+  "wordScore": 52,
+  "mistakenWords": [
+    "AMEN",
+    "CENT",
+    "CETE",
+    "CITE",
+    "EELY",
+    "NAME",
+    "PEEL",
+    "PEEP",
+    "PELE",
+    "PIET",
+    "PIPE",
+    "TEEPEE",
+    "TIPEE",
+    "YETI"
+  ]
+}

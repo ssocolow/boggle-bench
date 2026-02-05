@@ -384,6 +384,43 @@ main {
     background: linear-gradient(90deg, #3b82f6, #2563eb);
 }
 
+/* Error bars for chart */
+.chart-error-bar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background: rgba(30, 58, 95, 0.4);
+    z-index: 0;
+}
+
+.chart-error-cap {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 12px;
+    background: rgba(30, 58, 95, 0.4);
+}
+
+.chart-error-cap-left {
+    left: 0;
+}
+
+.chart-error-cap-right {
+    right: 0;
+}
+
+.chart-bar-value-error {
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translate(100%, -50%);
+    color: #333;
+    text-shadow: none;
+    padding-left: 4px;
+}
+
 /* Thermometer Score Bar */
 .thermometer-container {
     margin-top: 1rem;

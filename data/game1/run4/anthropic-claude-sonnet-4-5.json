@@ -1,0 +1,59 @@
+{
+  "model": "Claude Sonnet 4.5",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "N",
+      "C"
+    ],
+    [
+      "Y",
+      "L",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "F",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "S",
+      "F",
+      "I",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ANEW",
+    "ITEM",
+    "MEAN",
+    "MEET",
+    "MEN",
+    "METE",
+    "NEEP",
+    "NEW",
+    "OMEN",
+    "PEEN",
+    "PEW",
+    "TEEM",
+    "TEEN",
+    "WEN",
+    "WIPE"
+  ],
+  "wordScore": 26
+}

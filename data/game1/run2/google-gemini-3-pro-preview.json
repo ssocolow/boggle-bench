@@ -1,0 +1,92 @@
+{
+  "model": "Gemini 3 Pro",
+  "date": "2026-02-03",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "C"
+    ],
+    [
+      "Y",
+      "T",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "L",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "Qu",
+      "F",
+      "T",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ACNE",
+    "ANEW",
+    "EMOTE",
+    "EQUIP",
+    "EQUITY",
+    "FILE",
+    "FIT",
+    "LIFT",
+    "LITE",
+    "MEAN",
+    "MEN",
+    "MOTE",
+    "MOTIF",
+    "MOTILE",
+    "NORM",
+    "NOTE",
+    "OMEN",
+    "PEN",
+    "PENCE",
+    "PEW",
+    "PIE",
+    "PIETY",
+    "PIQUE",
+    "PIT",
+    "PITY",
+    "QUIET",
+    "QUILT",
+    "QUIT",
+    "QUITE",
+    "ROT",
+    "ROTE",
+    "TEE",
+    "TEN",
+    "TENOR",
+    "TILE",
+    "TIP",
+    "TON",
+    "TONE",
+    "TOY",
+    "WEAN",
+    "WEE",
+    "WET"
+  ],
+  "wordScore": 77,
+  "mistakenWords": [
+    "ANTE",
+    "MEANT",
+    "MORE",
+    "WANE"
+  ]
+}

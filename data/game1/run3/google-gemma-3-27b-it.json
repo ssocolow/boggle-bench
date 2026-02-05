@@ -1,0 +1,84 @@
+{
+  "model": "Gemma 3 27B",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "Z",
+      "N",
+      "E",
+      "R"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "N",
+      "C"
+    ],
+    [
+      "Y",
+      "H",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "L",
+      "T",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "M",
+      "no",
+      "F",
+      "T",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "FILE",
+    "ITEM",
+    "LIFT",
+    "MEAN",
+    "NET",
+    "NOTE",
+    "PEN",
+    "TEEN",
+    "TEN",
+    "TIE",
+    "TIP",
+    "TIPTOE",
+    "TOME",
+    "TON",
+    "TONE"
+  ],
+  "wordScore": 26,
+  "mistakenWords": [
+    "EMPTY",
+    "FINE",
+    "FLOAT",
+    "FLOW",
+    "FOOT",
+    "LEAP",
+    "LENT",
+    "LIME",
+    "LOT",
+    "MINE",
+    "MINT",
+    "NAME",
+    "PEAT",
+    "PENNY",
+    "RENT",
+    "RENT",
+    "TEAM",
+    "TURN",
+    "UNIT",
+    "WENT",
+    "WINE",
+    "WON",
+    "WORE"
+  ]
+}

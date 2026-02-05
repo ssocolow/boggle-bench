@@ -21,6 +21,17 @@ async function loadModels(gameId) {
     return models;
 }
 
+async function loadStats(gameId) {
+    // Try to load stats file with mean/stdev data
+    try {
+        const response = await fetch(`data/${gameId}/stats.json`);
+        if (!response.ok) return null;
+        return response.json();
+    } catch {
+        return null;
+    }
+}
+
 function renderGrid(grid, container, errorPositions = []) {
     container.innerHTML = '';
 
@@ -60,22 +71,34 @@ function compareGrids(modelGrid, correctGrid) {
     return errors;
 }
 
-function renderScoreChart(models, maxScore) {
+function renderScoreChart(models, maxScore, stats = null) {
     const container = document.getElementById('score-chart');
     container.innerHTML = '';
-
-    // Sort models by score descending
-    const sortedModels = [...models].sort((a, b) => b.wordScore - a.wordScore);
 
     // Create bar for max score
     const maxBar = createChartBar('Max Possible', maxScore, maxScore, 'max-score');
     container.appendChild(maxBar);
 
-    // Create bars for each model
-    sortedModels.forEach(model => {
-        const bar = createChartBar(model.model, model.wordScore, maxScore, 'model-score');
-        container.appendChild(bar);
-    });
+    if (stats && stats.models) {
+        // Use stats data with error bars (already sorted by mean)
+        stats.models.forEach(modelStats => {
+            const bar = createChartBarWithError(
+                modelStats.model,
+                modelStats.mean,
+                modelStats.stdev,
+                maxScore,
+                'model-score'
+            );
+            container.appendChild(bar);
+        });
+    } else {
+        // Fallback: sort models by score descending
+        const sortedModels = [...models].sort((a, b) => b.wordScore - a.wordScore);
+        sortedModels.forEach(model => {
+            const bar = createChartBar(model.model, model.wordScore, maxScore, 'model-score');
+            container.appendChild(bar);
+        });
+    }
 }
 
 function createChartBar(label, score, maxScore, type) {
@@ -101,6 +124,66 @@ function createChartBar(label, score, maxScore, type) {
     bar.appendChild(valueEl);
 
     barWrapper.appendChild(bar);
+    container.appendChild(barWrapper);
+
+    return container;
+}
+
+function createChartBarWithError(label, mean, stdev, maxScore, type) {
+    const container = document.createElement('div');
+    container.className = 'chart-bar-container';
+
+    const labelEl = document.createElement('span');
+    labelEl.className = 'chart-label';
+    labelEl.textContent = label;
+    container.appendChild(labelEl);
+
+    const barWrapper = document.createElement('div');
+    barWrapper.className = 'chart-bar-wrapper';
+
+    const bar = document.createElement('div');
+    bar.className = `chart-bar ${type}`;
+    const percentage = (mean / maxScore) * 100;
+    bar.style.width = `${percentage}%`;
+
+    barWrapper.appendChild(bar);
+
+    // Add error bar if stdev > 0
+    if (stdev > 0) {
+        const errorBar = document.createElement('div');
+        errorBar.className = 'chart-error-bar';
+
+        const stdevPercent = (stdev / maxScore) * 100;
+        const leftPos = Math.max(0, percentage - stdevPercent);
+        const rightPos = Math.min(100, percentage + stdevPercent);
+
+        errorBar.style.left = `${leftPos}%`;
+        errorBar.style.width = `${rightPos - leftPos}%`;
+
+        // Add whisker caps
+        const leftCap = document.createElement('div');
+        leftCap.className = 'chart-error-cap chart-error-cap-left';
+        errorBar.appendChild(leftCap);
+
+        const rightCap = document.createElement('div');
+        rightCap.className = 'chart-error-cap chart-error-cap-right';
+        errorBar.appendChild(rightCap);
+
+        // Add value at end of error bar
+        const valueEl = document.createElement('span');
+        valueEl.className = 'chart-bar-value chart-bar-value-error';
+        valueEl.textContent = Math.round(mean);
+        errorBar.appendChild(valueEl);
+
+        barWrapper.appendChild(errorBar);
+    } else {
+        // No error bar, put value in the bar itself
+        const valueEl = document.createElement('span');
+        valueEl.className = 'chart-bar-value';
+        valueEl.textContent = Math.round(mean);
+        bar.appendChild(valueEl);
+    }
+
     container.appendChild(barWrapper);
 
     return container;
@@ -233,8 +316,11 @@ async function init() {
             validWordsList.textContent = gameData.validWords.sort().join(', ');
         }
 
-        // Load model results
-        const models = await loadModels(gameId);
+        // Load model results and stats in parallel
+        const [models, stats] = await Promise.all([
+            loadModels(gameId),
+            loadStats(gameId)
+        ]);
 
         // Find best model score
         const bestScore = Math.max(...models.map(m => m.wordScore));
@@ -242,8 +328,14 @@ async function init() {
         // Set last updated text
         document.getElementById('last-updated').textContent = getLastUpdatedText(models);
 
-        // Render score chart
-        renderScoreChart(models, gameData.maxScore);
+        // Set sample size if stats available
+        if (stats && stats.models && stats.models.length > 0) {
+            const minN = Math.min(...stats.models.map(m => m.n));
+            document.getElementById('sample-size').textContent = `(n=${minN})`;
+        }
+
+        // Render score chart (with error bars if stats available)
+        renderScoreChart(models, gameData.maxScore, stats);
 
         // Render model cards
         const modelCardsContainer = document.getElementById('model-cards');

@@ -1,0 +1,91 @@
+{
+  "model": "Gemini 3 Flash",
+  "date": "2026-02-03",
+  "transcriptionGrid": [
+    [
+      "R",
+      "Z",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "C"
+    ],
+    [
+      "Y",
+      "T",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "L",
+      "I",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "Qu",
+      "F",
+      "T",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ACNE",
+    "MEET",
+    "NEEM",
+    "NORM",
+    "OMEN",
+    "PEWIT",
+    "PIETY",
+    "PITY",
+    "QUIP",
+    "QUIT",
+    "QUITE",
+    "TEEM",
+    "TEEN",
+    "WEEP",
+    "WEEPIE"
+  ],
+  "wordScore": 32,
+  "mistakenWords": [
+    "ANCE",
+    "ELMY",
+    "EMETIN",
+    "ENCAGE",
+    "ENEMA",
+    "ENMEW",
+    "MEETEN",
+    "MEETER",
+    "METRE",
+    "MORNE",
+    "MORNE",
+    "NEWT",
+    "PETE",
+    "PETER",
+    "PIPIT",
+    "PITIE",
+    "REMAN",
+    "REMEN",
+    "REMENE",
+    "TENET",
+    "TENNE",
+    "TEPEE",
+    "TEWEL",
+    "TWEEN",
+    "TWEENIE",
+    "WEEPET",
+    "WEEPT",
+    "WENE",
+    "WETTE",
+    "WETTER"
+  ]
+}

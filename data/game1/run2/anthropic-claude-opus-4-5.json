@@ -1,0 +1,91 @@
+{
+  "model": "Claude Opus 4.5",
+  "date": "2026-02-03",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "A",
+      "E",
+      "Z"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "O"
+    ],
+    [
+      "Y",
+      "T",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "L",
+      "I",
+      "W",
+      "P",
+      "I"
+    ],
+    [
+      "E",
+      "Qu",
+      "O",
+      "F",
+      "T"
+    ]
+  ],
+  "wordsFound": [
+    "ANEW",
+    "ELITE",
+    "EMOTE",
+    "EWE",
+    "ITEM",
+    "LITE",
+    "MEET",
+    "MEN",
+    "MENO",
+    "METE",
+    "MORN",
+    "MOTE",
+    "NEEM",
+    "OMEN",
+    "PEE",
+    "PEEN",
+    "PEW",
+    "PIE",
+    "PIETY",
+    "TEEM",
+    "TEEN",
+    "TIE",
+    "TILE",
+    "TIP",
+    "WEEN",
+    "WEEP",
+    "WEET",
+    "WIPE"
+  ],
+  "wordScore": 52,
+  "mistakenWords": [
+    "EELY",
+    "EMIT",
+    "EPEE",
+    "LWEI",
+    "MEOW",
+    "NEAP",
+    "NEWT",
+    "OMENS",
+    "ORE",
+    "ORM",
+    "PEEL",
+    "PIPE",
+    "ROMP",
+    "TEEPEE",
+    "TEPEE",
+    "TWEEN",
+    "YET"
+  ]
+}

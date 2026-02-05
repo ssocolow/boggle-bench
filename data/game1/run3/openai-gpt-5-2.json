@@ -1,0 +1,83 @@
+{
+  "model": "GPT-5.2",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "Z",
+      "E",
+      "A",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "C"
+    ],
+    [
+      "Y",
+      "T",
+      "E",
+      "W",
+      "E"
+    ],
+    [
+      "L",
+      "-",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "E",
+      "Qu",
+      "F",
+      "T",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ANEW",
+    "ITEM",
+    "LIE",
+    "LIEN",
+    "LIP",
+    "LITE",
+    "MEAN",
+    "MEN",
+    "MET",
+    "MEW",
+    "NEW",
+    "OMEN",
+    "ONE",
+    "PEEN",
+    "PEN",
+    "PET",
+    "PEW",
+    "PIE",
+    "PILE",
+    "PIT",
+    "PITY",
+    "QUIET",
+    "QUIP",
+    "QUIT",
+    "QUITE",
+    "TEEM",
+    "TEEN",
+    "TILE",
+    "TIP",
+    "TOE",
+    "TOM",
+    "TOME",
+    "TONE",
+    "WEAN",
+    "WEE",
+    "WIPE"
+  ],
+  "wordScore": 54,
+  "mistakenWords": [
+    "QUICK"
+  ]
+}

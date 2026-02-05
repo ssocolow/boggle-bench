@@ -1,0 +1,78 @@
+{
+  "model": "Llama 4 Maverick",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "N",
+      "E",
+      "V",
+      "N"
+    ],
+    [
+      "O",
+      "M",
+      "E",
+      "Z",
+      "U"
+    ],
+    [
+      "Y",
+      "H",
+      "E",
+      "W",
+      "M"
+    ],
+    [
+      "r",
+      "Qu",
+      "P",
+      "I",
+      "E"
+    ],
+    [
+      "m",
+      "u",
+      "F",
+      "l",
+      "O"
+    ]
+  ],
+  "wordsFound": [
+    "ANE",
+    "EWE",
+    "FIE",
+    "FIT",
+    "LEI",
+    "LIP",
+    "MEN",
+    "NET",
+    "NEW",
+    "ONE",
+    "TEN",
+    "TIE",
+    "TOE",
+    "TONE",
+    "WEN",
+    "WEPT"
+  ],
+  "wordScore": 18,
+  "mistakenWords": [
+    "AN",
+    "EAT",
+    "EYE",
+    "FLEW",
+    "LENT",
+    "LET",
+    "LINE",
+    "LONE",
+    "ME",
+    "NO",
+    "OWL",
+    "OWL",
+    "TO",
+    "TRY",
+    "TWEE",
+    "WE"
+  ]
+}

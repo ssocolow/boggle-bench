@@ -1,0 +1,66 @@
+{
+  "model": "GPT-4o Mini",
+  "date": "2026-02-04",
+  "transcriptionGrid": [
+    [
+      "R",
+      "E",
+      "Z",
+      "N",
+      "A"
+    ],
+    [
+      "M",
+      "E",
+      "T",
+      "W",
+      "O"
+    ],
+    [
+      "Y",
+      "E",
+      "W",
+      "P",
+      "I"
+    ],
+    [
+      "E",
+      "F",
+      "L",
+      "O",
+      "C"
+    ],
+    [
+      "U",
+      "T",
+      "A",
+      "N",
+      "E"
+    ]
+  ],
+  "wordsFound": [
+    "MEAN",
+    "MEN",
+    "QUITE",
+    "TOME"
+  ],
+  "wordScore": 7,
+  "mistakenWords": [
+    "CITE",
+    "CITY",
+    "CONE",
+    "FINE",
+    "LIME",
+    "LINE",
+    "MATE",
+    "MICE",
+    "MINE",
+    "NAME",
+    "NEAR",
+    "TIME",
+    "TIME",
+    "TINE",
+    "WINE",
+    "WIRE"
+  ]
+}

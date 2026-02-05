@@ -1,0 +1,58 @@
+{
+  "models": [
+    {
+      "model": "Gemini 3 Pro",
+      "mean": 89,
+      "stdev": 14.34,
+      "n": 5
+    },
+    {
+      "model": "GPT-5.2",
+      "mean": 66.2,
+      "stdev": 10.38,
+      "n": 5
+    },
+    {
+      "model": "Claude Opus 4.5",
+      "mean": 63,
+      "stdev": 7.25,
+      "n": 5
+    },
+    {
+      "model": "Gemini 3 Flash",
+      "mean": 40.2,
+      "stdev": 6.06,
+      "n": 5
+    },
+    {
+      "model": "Grok 4.1 Fast",
+      "mean": 37.8,
+      "stdev": 3.63,
+      "n": 5
+    },
+    {
+      "model": "Claude Sonnet 4.5",
+      "mean": 29.2,
+      "stdev": 13.14,
+      "n": 5
+    },
+    {
+      "model": "Gemma 3 27B",
+      "mean": 26.4,
+      "stdev": 2.7,
+      "n": 5
+    },
+    {
+      "model": "Llama 4 Maverick",
+      "mean": 23.8,
+      "stdev": 4.82,
+      "n": 5
+    },
+    {
+      "model": "GPT-4o Mini",
+      "mean": 10.2,
+      "stdev": 3.03,
+      "n": 5
+    }
+  ]
+}
