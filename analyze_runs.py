@@ -12,8 +12,9 @@ RUNS = ["run1", "run2", "run3", "run4", "run5"]
 
 
 def load_scores():
-    """Load wordScores for each model from all runs."""
+    """Load wordScores for each model from all runs. Returns (model_scores, earliest_date)."""
     model_scores = defaultdict(list)
+    earliest_date = None
 
     for run in RUNS:
         run_dir = os.path.join(DATA_DIR, run)
@@ -33,7 +34,11 @@ def load_scores():
             word_score = data.get("wordScore", 0)
             model_scores[model_name].append(word_score)
 
-    return model_scores
+            date = data.get("date")
+            if date and (earliest_date is None or date < earliest_date):
+                earliest_date = date
+
+    return model_scores, earliest_date
 
 
 def calculate_statistics(model_scores):
@@ -66,7 +71,7 @@ def main():
     )
     args = parser.parse_args()
 
-    model_scores = load_scores()
+    model_scores, earliest_date = load_scores()
     stats = calculate_statistics(model_scores)
 
     print("=" * 70)
@@ -82,6 +87,7 @@ def main():
     if args.output:
         # Prepare output data (exclude raw scores to keep file smaller)
         output_data = {
+            "date": earliest_date,
             "models": [
                 {
                     "model": s["model"],

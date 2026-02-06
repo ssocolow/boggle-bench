@@ -197,14 +197,12 @@ function getThermometerClass(score, bestScore) {
     return 'score-low';
 }
 
-function getLastUpdatedText(models) {
-    const dates = models.map(m => new Date(m.date));
-    const mostRecent = new Date(Math.max(...dates));
+function getLastUpdatedText(dateStr) {
+    const date = new Date(dateStr + 'T00:00:00');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    mostRecent.setHours(0, 0, 0, 0);
 
-    const diffTime = today - mostRecent;
+    const diffTime = today - date;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) return '(updated today)';
@@ -325,8 +323,14 @@ async function init() {
         // Find best model score
         const bestScore = Math.max(...models.map(m => m.wordScore));
 
-        // Set last updated text
-        document.getElementById('last-updated').textContent = getLastUpdatedText(models);
+        // Set last updated text from stats date or fallback to model dates
+        if (stats && stats.date) {
+            document.getElementById('last-updated').textContent = getLastUpdatedText(stats.date);
+        } else if (models.length > 0 && models[0].date) {
+            const dates = models.map(m => m.date).filter(Boolean);
+            const earliest = dates.sort()[0];
+            document.getElementById('last-updated').textContent = getLastUpdatedText(earliest);
+        }
 
         // Set sample size if stats available
         if (stats && stats.models && stats.models.length > 0) {
