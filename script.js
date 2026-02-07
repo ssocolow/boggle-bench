@@ -71,7 +71,7 @@ function compareGrids(modelGrid, correctGrid) {
     return errors;
 }
 
-function renderScoreChart(models, maxScore, stats = null) {
+function renderScoreChart(models, maxScore, stats = null, humanScore = null) {
     const container = document.getElementById('score-chart');
     container.innerHTML = '';
 
@@ -80,22 +80,39 @@ function renderScoreChart(models, maxScore, stats = null) {
     container.appendChild(maxBar);
 
     if (stats && stats.models) {
-        // Use stats data with error bars (already sorted by mean)
-        stats.models.forEach(modelStats => {
-            const bar = createChartBarWithError(
-                modelStats.model,
-                modelStats.mean,
-                modelStats.stdev,
-                maxScore,
-                'model-score'
-            );
-            container.appendChild(bar);
+        // Build combined list of models and human score, sorted by score descending
+        const entries = stats.models.map(m => ({ type: 'model', ...m }));
+        if (humanScore !== null) {
+            entries.push({ type: 'human', model: 'Human', mean: humanScore, stdev: 0 });
+        }
+        entries.sort((a, b) => b.mean - a.mean);
+
+        entries.forEach(entry => {
+            if (entry.type === 'human') {
+                const bar = createChartBar(entry.model, entry.mean, maxScore, 'human-score');
+                container.appendChild(bar);
+            } else {
+                const bar = createChartBarWithError(
+                    entry.model,
+                    entry.mean,
+                    entry.stdev,
+                    maxScore,
+                    'model-score'
+                );
+                container.appendChild(bar);
+            }
         });
     } else {
-        // Fallback: sort models by score descending
-        const sortedModels = [...models].sort((a, b) => b.wordScore - a.wordScore);
-        sortedModels.forEach(model => {
-            const bar = createChartBar(model.model, model.wordScore, maxScore, 'model-score');
+        // Fallback: sort models by score descending, include human
+        const entries = [...models].map(m => ({ type: 'model', label: m.model, score: m.wordScore }));
+        if (humanScore !== null) {
+            entries.push({ type: 'human', label: 'Human', score: humanScore });
+        }
+        entries.sort((a, b) => b.score - a.score);
+
+        entries.forEach(entry => {
+            const type = entry.type === 'human' ? 'human-score' : 'model-score';
+            const bar = createChartBar(entry.label, entry.score, maxScore, type);
             container.appendChild(bar);
         });
     }
@@ -339,7 +356,7 @@ async function init() {
         }
 
         // Render score chart (with error bars if stats available)
-        renderScoreChart(models, gameData.maxScore, stats);
+        renderScoreChart(models, gameData.maxScore, stats, gameData.humanScore || null);
 
         // Render model cards
         const modelCardsContainer = document.getElementById('model-cards');

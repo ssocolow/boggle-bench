@@ -384,6 +384,10 @@ main {
     background: linear-gradient(90deg, #3b82f6, #2563eb);
 }
 
+.chart-bar.human-score {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
 /* Error bars for chart */
 .chart-error-bar {
     position: absolute;
